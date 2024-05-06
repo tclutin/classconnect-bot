@@ -92,7 +92,6 @@ func (s *Service) CreateSubscriber(chatID uint64) error {
 }
 
 func (s *Service) GetSubscriber(chatID uint64) (model.SubscriberResponse, error) {
-	s.LogIn()
 	url := s.cfg.API.BaseURL + fmt.Sprintf("subscribers/telegram/%d", chatID)
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -127,6 +126,7 @@ func (s *Service) GetSubscriber(chatID uint64) (model.SubscriberResponse, error)
 	return subscriber, nil
 }
 
+/*
 func (s *Service) EnableSubscriberNotification(subID uint64, flag bool) error {
 	url := s.cfg.API.BaseURL + fmt.Sprintf("subscribers/%d", subID)
 	payload := model.EnableNotificationSubscriberRequest{Notification: flag}
@@ -159,6 +159,8 @@ func (s *Service) EnableSubscriberNotification(subID uint64, flag bool) error {
 	return nil
 }
 
+*/
+
 func (s *Service) GetGroups() ([]model.GroupResponse, error) {
 	url := s.cfg.API.BaseURL + "groups"
 
@@ -177,11 +179,11 @@ func (s *Service) GetGroups() ([]model.GroupResponse, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusUnauthorized {
-		return nil, fmt.Errorf("create subscriber failed with status code: %d", resp.StatusCode)
+		return nil, fmt.Errorf("get groups failed with status code: %d", resp.StatusCode)
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("group gets error: %d", resp.StatusCode)
+		return nil, fmt.Errorf("get group error: %d", resp.StatusCode)
 	}
 
 	var groups []model.GroupResponse
@@ -221,7 +223,7 @@ func (s *Service) JoinToGroup(groupID uint64, subID uint64, code string) error {
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("rror: %d", resp.StatusCode)
+		return fmt.Errorf("join to group failed with status code: %d", resp.StatusCode)
 	}
 
 	return nil
@@ -248,11 +250,11 @@ func (s *Service) LeaveFromGroup(groupID uint64, subID uint64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode == http.StatusUnauthorized {
-		return fmt.Errorf("join to group failed with status code: %d", resp.StatusCode)
+		return fmt.Errorf("leave to group failed with status code: %d", resp.StatusCode)
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("error: %d", resp.StatusCode)
+		return fmt.Errorf("leave to group failed with status code: %d", resp.StatusCode)
 	}
 
 	return nil
