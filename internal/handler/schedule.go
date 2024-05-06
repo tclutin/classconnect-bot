@@ -24,7 +24,7 @@ func (h *Handler) GetScheduleForDayHandler(c telebot.Context) error {
 
 	subjects, err := h.service.GetScheduleForDay(sub.ID)
 	if err != nil {
-		return c.Send("️⚠️ An internal error has occurred")
+		return c.Send(ErrInternal.Error())
 	}
 
 	if len(subjects) == 0 {
