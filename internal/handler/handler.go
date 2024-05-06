@@ -16,3 +16,19 @@ func NewHandler(bot *telebot.Bot, service *service.Service) *Handler {
 		service: service,
 	}
 }
+
+func (h *Handler) Init() {
+	//Just commands
+	h.bot.Handle("/start", h.StartHandler)
+	h.bot.Handle("/groups", h.ShowGroupsHandler)
+	h.bot.Handle("/join", h.JoinToGroupHandler)
+
+	//Reply menu
+	h.bot.Handle("👥 My group", h.GetGroupInfoHandler)
+	h.bot.Handle("🗓️ Getting a schedule for today", h.GetScheduleForDayHandler)
+	h.bot.Handle("❌ Exit", h.ExitFromGroupHandler)
+
+	//Events
+	h.bot.Handle(telebot.OnCallback, h.CallbackHandler)
+
+}

@@ -40,16 +40,7 @@ func New() *Bot {
 }
 
 func (b *Bot) Run() {
-	b.bot.Handle("/start", b.handler.StartHandler)
-	b.bot.Handle("/groups", b.handler.ShowGroupsHandler)
-	b.bot.Handle("/join", b.handler.JoinToGroupHandler)
-
-	b.bot.Handle("👥 My group", b.handler.GetGroupInfoHandler)
-	b.bot.Handle("🗓️ Getting a schedule for today", b.handler.GetScheduleForDayHandler)
-	b.bot.Handle("❌ Exit", b.handler.ExitFromGroupHandler)
-
-	//b.bot.Handle("Show groups", b.handler.ShowGroupsHandler)
-	b.bot.Handle(telebot.OnCallback, b.handler.CallbackHandler)
+	b.handler.Init()
 
 	b.bot.Start()
 }
