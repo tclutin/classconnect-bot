@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"classconnect-bot/internal/service"
+	"github.com/tclutin/classconnect-bot/internal/service"
 	"gopkg.in/telebot.v3"
 )
 

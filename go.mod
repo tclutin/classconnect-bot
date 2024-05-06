@@ -1,4 +1,4 @@
-module classconnect-bot
+module github.com/tclutin/classconnect-bot
 
 go 1.22
 

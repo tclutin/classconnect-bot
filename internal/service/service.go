@@ -2,10 +2,10 @@ package service
 
 import (
 	"bytes"
-	"classconnect-bot/internal/config"
-	"classconnect-bot/internal/model"
 	"encoding/json"
 	"fmt"
+	"github.com/tclutin/classconnect-bot/internal/config"
+	"github.com/tclutin/classconnect-bot/internal/model"
 	"net/http"
 )
 

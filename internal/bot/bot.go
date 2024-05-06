@@ -1,9 +1,9 @@
 package bot
 
 import (
-	"classconnect-bot/internal/config"
-	"classconnect-bot/internal/handler"
-	"classconnect-bot/internal/service"
+	"github.com/tclutin/classconnect-bot/internal/config"
+	"github.com/tclutin/classconnect-bot/internal/handler"
+	"github.com/tclutin/classconnect-bot/internal/service"
 	"gopkg.in/telebot.v3"
 	"log"
 	"time"

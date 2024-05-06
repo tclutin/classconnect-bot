@@ -1,8 +1,6 @@
 package main
 
-import (
-	"classconnect-bot/internal/bot"
-)
+import "github.com/tclutin/classconnect-bot/internal/bot"
 
 func main() {
 	bot.New().Run()
