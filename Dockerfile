@@ -10,6 +10,4 @@ RUN go build -o ./ cmd/main.go
 
 ENV BOT_API_CONFIG_PATH="./configs/config.yaml"
 
-EXPOSE 8083
-
 CMD ["./main"]
